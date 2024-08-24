@@ -1,0 +1,23 @@
+{
+  "name": "shrinkify",
+  "version": "1.0.0",
+  "description": "An website which allows users to compress videos and pictures.",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build -i pre-build/styles.css -o build/styles.css",
+    "watch-css": "tailwindcss build -i pre-build/styles.css -o build/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vaneeyo/shrinkify.git"
+  },
+  "author": "Vaneeyo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vaneeyo/shrinkify/issues"
+  },
+  "homepage": "https://github.com/Vaneeyo/shrinkify#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.10"
+  }
+}
