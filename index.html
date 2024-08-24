@@ -5,25 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrinkify</title>
-    <meta name="description"
-    content="Shrinkify the best way to compress images on the web."/>
+    <meta name="description" content="Shrinkify the best way to compress images on the web." />
     <meta property="og:title" content="Shrinkify - Compress images on the web" />
-    <meta property="og:description"
-        content="A easy-to-use way for shrinking image sizes." />
+    <meta property="og:description" content="A easy-to-use way for shrinking image sizes." />
     <meta property="og:image" content="https://shrinkify-phi.vercel.app/images/shrinkify.png" />
 
     <link rel="stylesheet" href="build/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="js/compress.js" defer></script>
     <link rel="icon" type="image/x-icon" href="/images/shrinkify.png">
 </head>
 
 <body class="bg-neutral-950 text-neutral-50 font-satoshi flex flex-col h-screen w-full items-center gap-8">
     <div class="m-0 top-0 w-full h-20 flex items-center justify-between p-8">
-        <div class="font-medium text-xl flex items-center gap-2">
-            <img src="images/shrinkify.png" class="w-8 h-8">
-            <span>Shrinkify</span>
-        </div>
+        <a href="https://shrinkify-phi.vercel.app">
+            <div class="font-medium text-xl flex items-center gap-2">
+                <img src="images/shrinkify.png" class="w-8 h-8">
+                <span>Shrinkify</span>
+            </div>
+        </a>
+
         <a href="https://github.com/Vaneeyo/shrinkify" target="_blank">
             <img src="images/github.png" class="rounded-full">
         </a>

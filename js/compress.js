@@ -21,7 +21,6 @@ function isImageFile(file) {
     return file && file.type.startsWith('image/');
 }
 
-
 function addFiles(newFiles) {
     newFiles.forEach(newFile => {
         if (isImageFile(newFile) && !files.some(existingFile => existingFile.name === newFile.name && existingFile.size === newFile.size)) {
@@ -66,22 +65,14 @@ async function compressFiles() {
         useWebWorker: true,
     };
 
+    const zip = new JSZip();
+    const compressedFiles = [];
+
     for (const file of files) {
         try {
             if (file instanceof File) {
                 const compressedFile = await imageCompression(file, options);
-
-                const url = URL.createObjectURL(compressedFile);
-
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = compressedFile.name;
-
-                document.body.appendChild(a);
-                a.click();
-
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
+                compressedFiles.push(compressedFile);
             } else {
                 console.error("Item is not a File:", file);
             }
@@ -89,7 +80,42 @@ async function compressFiles() {
             console.error(error);
         }
     }
+
+    // zipping only if one file
+    if (compressedFiles.length === 1) {
+        const compressedFile = compressedFiles[0];
+        const url = URL.createObjectURL(compressedFile);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = compressedFile.name;
+
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    } else if (compressedFiles.length > 1) {
+        compressedFiles.forEach((compressedFile) => {
+            zip.file(compressedFile.name, compressedFile, { binary: true });
+        });
+
+        zip.generateAsync({ type: 'blob' }).then(function (content) {
+            const url = URL.createObjectURL(content);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'compressed_images.zip';
+
+            document.body.appendChild(a);
+            a.click();
+
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
 }
+
 
 function dragOverHandler(ev) {
     ev.preventDefault();
