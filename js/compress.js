@@ -17,6 +17,11 @@ function handleFileInputChange(ev) {
     updateFileList();
 }
 
+function isImageFile(file) {
+    return file && file.type.startsWith('image/');
+}
+
+
 function addFiles(newFiles) {
     newFiles.forEach(newFile => {
         if (isImageFile(newFile) && !files.some(existingFile => existingFile.name === newFile.name && existingFile.size === newFile.size)) {
